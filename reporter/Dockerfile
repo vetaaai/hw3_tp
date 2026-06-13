@@ -1,4 +1,6 @@
-FROM python:3.11-alpine
+FROM node:20-alpine
 WORKDIR /app
-COPY report.py .
-ENTRYPOINT ["python", "report.py"]
+COPY package.json package-lock.json ./
+RUN npm install
+COPY report.js .
+ENTRYPOINT ["node", "report.js"]
